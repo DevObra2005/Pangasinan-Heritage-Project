@@ -104,7 +104,7 @@ export default function Navbar() {
             </li>
           ))}
         </ul>
-        <Button className="w-full" variant="secondary">
+        <Button href="#visit" className="w-full" variant="outlineglass">
           Visit Pangasinan
         </Button>
       </div>
