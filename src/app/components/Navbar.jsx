@@ -69,7 +69,7 @@ export default function Navbar() {
         </ul>
 
         {/* Desktop CTA button */}
-        <Button className="hidden md:block" variant="secondary">
+        <Button href="#visit" className="hidden md:block" variant="secondary">
           Visit Pangasinan
         </Button>
 
