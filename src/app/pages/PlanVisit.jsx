@@ -16,20 +16,18 @@ export default function PlanVisit() {
     { name: "Colibra Island", area: "Dasol" },
   ];
 
-  // Filter spots by search text (matches name or area)
   const filteredSpots = spots.filter(
     (spot) =>
       spot.name.toLowerCase().includes(query.toLowerCase()) ||
       spot.area.toLowerCase().includes(query.toLowerCase())
   );
 
-  // Build the map URL from the selected place
   const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(
     selected + ", Pangasinan, Philippines"
   )}&output=embed`;
 
   return (
-    <section id="visit" className="bg-heritage-cream px-6 md:px-16 py-24">
+    <section id="visit" className="bg-heritage-cream px-6 md:px-16 py-24 overflow-hidden">
       <div className="max-w-6xl mx-auto">
         {/* Heading */}
         <div className="text-center mb-10" data-aos="fade-up">
@@ -54,10 +52,9 @@ export default function PlanVisit() {
           />
         </div>
 
-     
         <div className="grid gap-8 lg:grid-cols-2 items-start">
-      
-          <div data-aos="fade-right" className="grid gap-3">
+          {/* Spot list */}
+          <div data-aos="fade-up" className="grid gap-3">
             {filteredSpots.length > 0 ? (
               filteredSpots.map((spot) => (
                 <button
@@ -85,14 +82,12 @@ export default function PlanVisit() {
                 </button>
               ))
             ) : (
-              <p className="text-gray-500 italic">
-                No spots match "{query}".
-              </p>
+              <p className="text-gray-500 italic">No spots match "{query}".</p>
             )}
           </div>
 
           {/* Map */}
-          <div data-aos="fade-left" className="rounded-2xl overflow-hidden shadow-xl h-full min-h-[450px]">
+          <div data-aos="fade-up" className="rounded-2xl overflow-hidden shadow-xl h-full min-h-[450px]">
             <iframe
               key={mapSrc}
               src={mapSrc}

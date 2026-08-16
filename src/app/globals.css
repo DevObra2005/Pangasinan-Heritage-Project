@@ -6,6 +6,9 @@
   --font-sans: var(--font-mulish), sans-serif;
   --font-serif: var(--font-marcellus), serif;
 }
+body {
+  overflow-x: hidden;
+}
 
 html {
   scroll-behavior: smooth;
