@@ -70,7 +70,7 @@ export default function Home() {
             The land where salt was born and legends endure.
           </p>
 
-          <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button variant="primary" href="#discover">
               Discover More
             </Button>
@@ -142,7 +142,7 @@ export default function Home() {
             </p>
 
             {/* Inline stats */}
-            <div data-aos="fade-up" className="flex gap-8 stats-float absolute -bottom-14 left-1/2 -translate-x-1/2 w-[90%] max-w-3xl z-20">
+            <div className="flex flex-wrap gap-6 md:gap-8 mt-8">
               <div className="about-stat">
                 <div className="about-stat-num">5,451</div>
                 <div className="about-stat-label">KM² AREA</div>
