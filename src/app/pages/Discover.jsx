@@ -3,39 +3,39 @@ import HeritageGrid from "../components/HeritageGrid";
 const spots = [
   {
     title: "Hundred Islands",
+    location: "Alaminos",
     image: "/Images/HundredIsland.jpg",
-    description:
-      "Over a hundred limestone islets scattered across Alaminos — Pangasinan's most iconic natural wonder, perfect for island hopping and snorkeling.",
+    description: "Over a hundred limestone islets — perfect for island hopping and snorkeling.",
   },
   {
-    title: "Bolinao White Sand Beach",
+    title: "Bolinao Beach",
+    location: "Bolinao",
     image: "/Images/Bolinao.jpg",
-    description:
-      "A coastal town famed for its century-old lighthouse, white-sand beaches, and fresh seafood on the edge of the West Philippine Sea.",
+    description: "White-sand beaches, a century-old lighthouse, and fresh coastal seafood.",
   },
   {
     title: "Bolinao Falls",
+    location: "Bolinao",
     image: "/Images/BolinaoFalls.jpg",
-    description:
-      "Turquoise cascades tucked in the hills of Bolinao — a refreshing inland escape surrounded by lush greenery and cool, clear pools.",
+    description: "Turquoise cascades tucked in the hills — a cool, refreshing inland escape.",
   },
   {
     title: "Bolinao Lighthouse",
+    location: "Bolinao",
     image: "/Images/BolinaoLightHouse.jpg",
-    description:
-      "Built in 1905 atop rocky Punta Piedra Point, this historic beacon is the Philippines' second-tallest lighthouse, offering sweeping views of the West Philippine Sea.",
+    description: "A 1905 beacon on Punta Piedra Point — the country's second-tallest lighthouse.",
   },
   {
-    title: "Malico - San Nicolas",
+    title: "Malico",
+    location: "San Nicolas",
     image: "/Images/Malico.jpg",
-    description:
-      "The 'Little Baguio of Pangasinan' — a cool, high-elevation mountain village along the Villa Verde Trail, known for pine-scented air and rolling grasslands.",
+    description: "The 'Little Baguio of Pangasinan' — cool mountain air and rolling grasslands.",
   },
   {
-    title: "Colibra Island - Dasol",
+    title: "Colibra Island",
+    location: "Dasol",
     image: "/Images/ColibraIsland.jpg",
-    description:
-      "A tiny, uninhabited coralline island off Dasol Bay — once called Snake Island — ringed with white sand and prized for camping and sunset views.",
+    description: "A tiny, uninhabited coralline island — once called Snake Island.",
   },
 ];
 
@@ -43,17 +43,19 @@ export default function Discover() {
   return (
     <section id="discover" className="bg-heritage-cream px-6 md:px-16 py-20">
       <div className="max-w-6xl mx-auto">
-
         <div className="text-center mb-14">
-          <h2 data-aos="slide-up" className="font-serif text-4xl md:text-5xl text-heritage-green">
+          <span data-aos="fade-up" className="text-sm tracking-[0.3em] text-heritage-green/50 uppercase">
+            Explore the Province
+          </span>
+          <h2 data-aos="fade-up" className="font-serif text-4xl md:text-5xl text-heritage-green mt-3">
             Discover Pangasinan
           </h2>
-          <p data-aos="slide-up" className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+          <p data-aos="fade-up" className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
             From scattered islands to hidden waterfalls, explore the places
             that make Pangasinan unforgettable.
           </p>
         </div>
-        <HeritageGrid items={spots} columns={3} theme="light" />
+        <HeritageGrid items={spots} columns={4} theme="light" />
       </div>
     </section>
   );

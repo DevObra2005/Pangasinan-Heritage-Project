@@ -4,8 +4,8 @@ import { useState } from "react";
 import HeritageCard from "./HeritageCard";
 import Button from "./Button";
 
-export default function HeritageGrid({ items, columns = 3, theme = "light"}) {
-  const [visibleCount, setVisibleCount] = useState(3);
+export default function HeritageGrid({ items, columns = 4, theme = "light"}) {
+  const [visibleCount, setVisibleCount] = useState(4);
 
   const columnClasses = {
     2: "md:grid-cols-2",
@@ -18,11 +18,12 @@ export default function HeritageGrid({ items, columns = 3, theme = "light"}) {
 
   return (
     <>
-      <div className={`grid gap-8 items-stretch ${columnClasses[columns]}`}>
-        {visibleItems.map((item) => (
+      <div className={`grid gap-5 ${columnClasses[columns]}`}>
+        {visibleItems.map((item, index) => (
           <div key={item.title} data-aos="fade-up">
             <HeritageCard
-              theme={theme}
+              index={index}
+              location={item.location}
               image={item.image}
               title={item.title}
               description={item.description}
@@ -32,7 +33,7 @@ export default function HeritageGrid({ items, columns = 3, theme = "light"}) {
       </div>
 
       {visibleCount < items.length && (
-        <div className="text-center mt-12">
+        <div className="text-center mt-10" data-aos="fade-up">
           <Button 
             variant={buttonVariant}
             onClick={() => setVisibleCount(items.length)}

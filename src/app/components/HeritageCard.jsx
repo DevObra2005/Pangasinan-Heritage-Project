@@ -1,40 +1,35 @@
+"use client";
+
 import Image from "next/image";
+import "../CSS/heritagecard.css";
 
-export default function HeritageCard({ image, title, description, theme = "light" }) {
-  const styles = {
-    light: {
-      card: "bg-white border-gray-200 hover:shadow-xl",
-      title: "text-heritage-green",
-      text: "text-gray-600",
-    },
-    glass: {
-      card: "bg-heritage-cream/10 backdrop-blur-md border-heritage-cream/20 hover:bg-heritage-cream/15",
-      title: "text-heritage-cream",
-      text: "text-heritage-cream/75",
-    },
-  };
-
-  const style = styles[theme];
-
+export default function HeritageCard({ image, title, description, location, href = "#" }) {
   return (
-    <div className={`group rounded-2xl overflow-hidden border transition-all duration-300 h-full flex flex-col ${style.card}`}>
+   <a href={href} className="view-card group flex flex-col rounded-2xl overflow-hidden h-full">
       {/* Image */}
-      <div className="relative h-56 overflow-hidden">
+      <div className="relative h-44 overflow-hidden">
         <Image
           src={image}
           alt={title}
           fill
-          sizes="(max-width: 768px) 100vw, 33vw"
-          priority
-          className="object-cover transition-transform duration-500 group-hover:scale-110"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+          className="view-image object-cover"
         />
       </div>
 
-      {/* Text */}
-      <div className="p-6">
-        <h3 className={`font-serif text-2xl mb-2 ${style.title}`}>{title}</h3>
-        <p className={`leading-relaxed ${style.text}`}>{description}</p>
+      
+      <div className="view-body relative p-5 flex flex-col flex-1">
+        {location && (
+          <span className="view-pin block mb-1.5">📍 {location}</span>
+        )}
+        <h3 className="view-title font-serif text-xl mb-2">{title}</h3>
+        <p className="view-desc text-sm leading-relaxed">{description}</p>
+
+        <span className="view-more inline-flex items-center gap-1.5 mt-auto pt-3 text-sm font-semibold">
+          View More
+          <span className="view-arrow">→</span>
+        </span>
       </div>
-    </div>
+    </a>
   );
 }

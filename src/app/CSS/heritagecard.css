@@ -1,0 +1,69 @@
+.view-card {
+  background: #fff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.45s ease;
+}
+.view-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 44px rgba(27, 67, 50, 0.25);
+}
+
+.view-image {
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.view-card:hover .view-image {
+  transform: scale(1.1);
+}
+
+/* Body: white by default, green on hover */
+.view-body {
+  background: #ffffff;
+  transition: background 0.45s ease;
+}
+.view-card:hover .view-body {
+  background: #1b4332;
+}
+
+.view-pin {
+  font-family: var(--font-mulish), sans-serif;
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #c49a4a;
+  transition: color 0.45s ease;
+}
+.view-card:hover .view-pin {
+  color: #e0b877;
+}
+
+.view-title {
+  color: #1b4332;
+  transition: color 0.45s ease;
+}
+.view-card:hover .view-title {
+  color: #fdf6ec;
+}
+
+.view-desc {
+  color: #666;
+  transition: color 0.45s ease;
+}
+.view-card:hover .view-desc {
+  color: rgba(253, 246, 236, 0.8);
+}
+
+.view-more {
+  color: #1b4332;
+  transition: color 0.45s ease;
+}
+.view-card:hover .view-more {
+  color: #e0b877;
+}
+
+.view-arrow {
+  transition: transform 0.3s ease;
+}
+.view-card:hover .view-arrow {
+  transform: translateX(4px);
+}
