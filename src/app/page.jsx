@@ -5,6 +5,7 @@ import Image from "next/image";
 import Button from "./components/Button";
 import Discover from "./pages/Discover";
 import Culture from "./pages/Culture";
+import PlanVisit from "./pages/PlanVisit";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -87,6 +88,8 @@ export default function Home() {
       <Discover />
 
       <Culture />
+
+       <PlanVisit />
     </>
   );
 }
