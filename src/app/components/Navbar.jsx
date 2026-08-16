@@ -86,27 +86,39 @@ export default function Navbar() {
       </div>
 
       {/* Mobile dropdown menu */}
+      {/* Mobile dropdown menu */}
       <div
         className={`md:hidden overflow-hidden transition-all duration-300 ${
           isOpen ? "max-h-96 mt-4" : "max-h-0"
         }`}
       >
-        <ul className="flex flex-col gap-4 text-sm font-medium pb-4">
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <Link
-                href={link.href}
-                onClick={() => setIsOpen(false)}
-                className="block py-1 hover:text-yellow-200 transition-colors"
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-        <Button href="#visit" className="w-full" variant="outlineglass">
-          Visit Pangasinan
-        </Button>
+        <div className="bg-heritage-green rounded-2xl p-6 border border-heritage-cream/10">
+          <ul className="flex flex-col gap-2 text-base font-medium">
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.id;
+              return (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    onClick={() => setIsOpen(false)}
+                    className={`block py-3 px-4 rounded-xl transition-colors ${
+                      isActive
+                        ? "bg-heritage-cream/10 text-yellow-200"
+                        : "hover:bg-heritage-cream/5 hover:text-yellow-200"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+          <div className="mt-4">
+            <Button href="#visit" onClick={() => setIsOpen(false)} className="w-full" variant="secondary">
+              Visit Pangasinan
+            </Button>
+          </div>
+        </div>
       </div>
     </nav>
   );
