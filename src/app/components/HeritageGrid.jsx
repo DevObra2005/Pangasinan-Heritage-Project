@@ -4,7 +4,7 @@ import { useState } from "react";
 import HeritageCard from "./HeritageCard";
 import Button from "./Button";
 
-export default function HeritageGrid({ items, columns = 4, theme = "light"}) {
+export default function HeritageGrid({ onViewMore, items, columns = 4, theme = "light"}) {
   const [visibleCount, setVisibleCount] = useState(4);
 
   const columnClasses = {
@@ -27,6 +27,7 @@ export default function HeritageGrid({ items, columns = 4, theme = "light"}) {
               image={item.image}
               title={item.title}
               description={item.description}
+              onViewMore={() => onViewMore(item)}
             />
           </div>
         ))}

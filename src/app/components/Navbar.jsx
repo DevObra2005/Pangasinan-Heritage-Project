@@ -3,10 +3,12 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Button from "../components/Button";
+import "../CSS/navbar.css";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const [scrolled, setScrolled] = useState(false);
 
   const navLinks = [
     { label: "Home", href: "/#home", id: "home" },
@@ -14,37 +16,36 @@ export default function Navbar() {
     { label: "Culture", href: "/#culture", id: "culture" },
   ];
 
+  // Detect scroll to toggle glass
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Scroll-spy for active section
   useEffect(() => {
     const sections = navLinks.map((link) => document.getElementById(link.id));
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
+          if (entry.isIntersecting) setActiveSection(entry.target.id);
         });
       },
       { rootMargin: "-50% 0px -50% 0px" }
     );
-
-    sections.forEach((section) => {
-      if (section) observer.observe(section);
-    });
-
+    sections.forEach((section) => section && observer.observe(section));
     return () => observer.disconnect();
   }, []);
 
   return (
-    <nav className="fixed w-full top-0 z-50 bg-heritage-green/90 backdrop-blur-md text-heritage-cream px-6 md:px-16 py-3 shadow-lg">
+    <nav className={`nav-bar text-heritage-cream ${scrolled ? "scrolled" : "at-top"}`}>
       <div className="flex items-center justify-between">
-
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 rounded-full bg-heritage-cream text-heritage-green flex items-center justify-center font-bold text-lg font-serif transition-transform duration-300 group-hover:scale-110">
-            P
-          </div>
-          <span className="font-bold transition-colors duration-300 group-hover:text-yellow-200">
+          <div className="nav-logo-circle">P</div>
+          <span className="font-bold font-serif transition-colors duration-300 group-hover:text-yellow-200">
             Pangasinan Heritage
           </span>
         </Link>
@@ -55,25 +56,25 @@ export default function Navbar() {
             const isActive = activeSection === link.id;
             return (
               <li key={link.href} className="relative group">
-                <Link href={link.href} className="py-2">
+                <Link href={link.href} className="nav-link">
                   {link.label}
                 </Link>
                 <span
-                  className={`absolute left-0 -bottom-0.5 h-0.5 bg-yellow-200 transition-all duration-300 ${
-                    isActive ? "w-full" : "w-0 group-hover:w-full"
-                  }`}
+                  className="nav-link-underline"
+                  style={{ width: isActive ? "100%" : "0%" }}
                 ></span>
+                <span className="nav-link-underline w-0 group-hover:w-full"></span>
               </li>
             );
           })}
         </ul>
 
-        {/* Desktop CTA button */}
+        {/* Desktop CTA */}
         <Button href="#visit" className="hidden md:block" variant="secondary">
           Visit Pangasinan
         </Button>
 
-        {/* Hamburger button (mobile only) */}
+        {/* Hamburger */}
         <button
           className="md:hidden flex flex-col gap-1.5 w-8 h-8 justify-center items-center"
           onClick={() => setIsOpen(!isOpen)}
@@ -85,14 +86,9 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile dropdown menu */}
-      {/* Mobile dropdown menu */}
-      <div
-        className={`md:hidden overflow-hidden transition-all duration-300 ${
-          isOpen ? "max-h-96 mt-4" : "max-h-0"
-        }`}
-      >
-        <div className="bg-heritage-green rounded-2xl p-6 border border-heritage-cream/10">
+      {/* Mobile menu */}
+      <div className={`md:hidden overflow-hidden transition-all duration-300 ${isOpen ? "max-h-96 mt-4" : "max-h-0"}`}>
+        <div className="nav-mobile-panel">
           <ul className="flex flex-col gap-2 text-base font-medium">
             {navLinks.map((link) => {
               const isActive = activeSection === link.id;
@@ -102,9 +98,7 @@ export default function Navbar() {
                     href={link.href}
                     onClick={() => setIsOpen(false)}
                     className={`block py-3 px-4 rounded-xl transition-colors ${
-                      isActive
-                        ? "bg-heritage-cream/10 text-yellow-200"
-                        : "hover:bg-heritage-cream/5 hover:text-yellow-200"
+                      isActive ? "bg-heritage-cream/10 text-yellow-200" : "hover:bg-heritage-cream/5 hover:text-yellow-200"
                     }`}
                   >
                     {link.label}

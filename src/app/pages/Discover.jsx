@@ -6,40 +6,58 @@ const spots = [
     location: "Alaminos",
     image: "/Images/HundredIsland.jpg",
     description: "Over a hundred limestone islets — perfect for island hopping and snorkeling.",
+    bestFor: "Island Hopping",
+    bestTime: "Nov – April",
+    tags: ["🏝️ Island Hopping", "🤿 Snorkeling"],
   },
   {
     title: "Bolinao Beach",
     location: "Bolinao",
     image: "/Images/Bolinao.jpg",
     description: "White-sand beaches, a century-old lighthouse, and fresh coastal seafood.",
+    bestFor: "Beaches & Seafood",
+    bestTime: "Nov – April",
+    tags: ["🏖️ White Sand", "🦞 Fresh Seafood"],
   },
   {
     title: "Bolinao Falls",
     location: "Bolinao",
     image: "/Images/BolinaoFalls.jpg",
     description: "Turquoise cascades tucked in the hills — a cool, refreshing inland escape.",
+    bestFor: "Swimming & Nature",
+    bestTime: "June – Oct",
+    tags: ["💧 Waterfalls", "🏊 Swimming"],
   },
   {
     title: "Bolinao Lighthouse",
     location: "Bolinao",
     image: "/Images/BolinaoLightHouse.jpg",
     description: "A 1905 beacon on Punta Piedra Point — the country's second-tallest lighthouse.",
+    bestFor: "Sightseeing & History",
+    bestTime: "Year-round",
+    tags: ["🗼 Historic Landmark", "🌅 Scenic Views"],
   },
   {
     title: "Malico",
     location: "San Nicolas",
     image: "/Images/Malico.jpg",
     description: "The 'Little Baguio of Pangasinan' — cool mountain air and rolling grasslands.",
+    bestFor: "Mountain Views",
+    bestTime: "Dec – Feb",
+    tags: ["⛰️ Mountain Village", "🌿 Cool Climate"],
   },
   {
     title: "Colibra Island",
     location: "Dasol",
     image: "/Images/ColibraIsland.jpg",
     description: "A tiny, uninhabited coralline island — once called Snake Island.",
+    bestFor: "Camping & Sunsets",
+    bestTime: "March – May",
+    tags: ["🏕️ Camping", "🌇 Sunset Spot"],
   },
 ];
 
-export default function Discover() {
+export default function Discover({ onViewMore }) {
   return (
     <section id="discover" className="bg-heritage-cream px-6 md:px-16 py-20">
       <div className="max-w-6xl mx-auto">
@@ -55,7 +73,7 @@ export default function Discover() {
             that make Pangasinan unforgettable.
           </p>
         </div>
-        <HeritageGrid items={spots} columns={4} theme="light" />
+        <HeritageGrid items={spots} columns={4} theme="light" onViewMore={onViewMore} />
       </div>
     </section>
   );

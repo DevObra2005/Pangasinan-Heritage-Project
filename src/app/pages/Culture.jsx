@@ -6,40 +6,58 @@ const culture = [
     location: "Fermented Fish Paste",
     image: "/Images/Bagoong.jpg",
     description: "Pangasinan's beloved fermented fish paste — a savory staple in local cooking.",
+    bestFor: "Local Cuisine",
+    type: "culture",
+    tags: ["🐟 Fermented", "🍚 Local Staple"],
   },
   {
     title: "Bonuan Bangus",
     location: "Dagupan",
     image: "/Images/Bangus.jpg",
     description: "Dagupan's prized milkfish, famed as the tastiest in the Philippines.",
+    bestFor: "Local Delicacy",
+    type: "culture",
+    tags: ["🐟 Milkfish", "⭐ World-Class"],
   },
   {
     title: "Pista'y Dayat",
     location: "Lingayen",
     image: "/Images/PistayDayat.jpg",
     description: "Pangasinan's beloved Sea Festival — a coastal thanksgiving to the bounty of Lingayen Gulf.",
+    bestFor: "Cultural Festival",
+    type: "culture",
+    tags: ["🌊 Sea Festival", "🎉 Held Every May"],
   },
   {
     title: "Puto Calasiao",
     location: "Calasiao",
     image: "/Images/Puto.jpg",
     description: "Soft, bite-sized steamed rice cakes — a sweet local delicacy.",
+    bestFor: "Sweet Delicacy",
+    type: "culture",
+    tags: ["🍚 Rice Cake", "🍯 Sweet Treat"],
   },
   {
     title: "Salt-Making",
     location: "Coastal Towns",
     image: "/Images/Salt.jpg",
     description: "The traditional salt beds that gave Pangasinan its name.",
+    bestFor: "Living Tradition",
+    type: "culture",
+    tags: ["🧂 Salt Beds", "📜 Heritage Craft"],
   },
   {
     title: "Bangus Festival",
     location: "Dagupan",
     image: "/Images/Festival.jpg",
     description: "A vibrant celebration of the milkfish with street dancing and feasts.",
+    bestFor: "Cultural Festival",
+    type: "culture",
+    tags: ["🎊 Street Dancing", "🐟 Milkfish Feast"],
   },
 ];
 
-export default function Culture() {
+export default function Culture({ onViewMore }) {
   return (
     <section
       id="culture"
@@ -62,7 +80,7 @@ export default function Culture() {
           </p>
         </div>
 
-        <HeritageGrid items={culture} columns={4} theme="glass" />
+        <HeritageGrid items={culture} columns={4} theme="glass" onViewMore={onViewMore} />
       </div>
     </section>
   );

@@ -4,9 +4,11 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Button from "./components/Button";
 import "./CSS/home.css";
+import Loader from "./pages/Loader";
 import Discover from "./pages/Discover";
 import Culture from "./pages/Culture";
 import PlanVisit from "./pages/PlanVisit";
+import SpotDetail from "./components/HeritageCardDetails";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -18,6 +20,7 @@ const images = [
 
 export default function Home() {
   const [current, setCurrent] = useState(0);
+  const [selectedSpot, setSelectedSpot] = useState(null);
 
   useEffect(() => {
     AOS.init({
@@ -32,6 +35,21 @@ export default function Home() {
 
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    if (selectedSpot) {
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }
+  }, [selectedSpot]);
+
+  if (selectedSpot) {
+    return (
+      <SpotDetail
+        spot={selectedSpot}
+        onBack={() => setSelectedSpot(null)}
+      />
+    );
+  }
 
   return (
     <>
@@ -85,7 +103,7 @@ export default function Home() {
           href="#discover"
           className="absolute bottom-24 left-1/2 -translate-x-1/2 flex flex-col items-center text-heritage-cream/80 animate-bounce hover:text-heritage-cream transition-colors"
         >
-          <span className="text-xs tracking-[0.3em]">SCROLL DOWN</span>
+          <span className="text-md">SCROLL DOWN TO EXPLORE</span>
           <span className="text-2xl">↓</span>
         </a>
       </section>
@@ -173,8 +191,9 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <Discover />
-      <Culture />
+      <Loader />
+      <Discover onViewMore={setSelectedSpot} />
+      <Culture onViewMore={setSelectedSpot} />
       <PlanVisit />
     </>
   );

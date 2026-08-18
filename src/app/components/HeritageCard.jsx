@@ -3,9 +3,12 @@
 import Image from "next/image";
 import "../CSS/heritagecard.css";
 
-export default function HeritageCard({ image, title, description, location, href = "#" }) {
+export default function HeritageCard({ onViewMore, image, title, description, location }) {
   return (
-   <a href={href} className="view-card group flex flex-col rounded-2xl overflow-hidden h-full">
+    <div
+      onClick={onViewMore}
+      className="view-card group flex flex-col rounded-2xl overflow-hidden h-full cursor-pointer"
+    >
       {/* Image */}
       <div className="relative h-44 overflow-hidden">
         <Image
@@ -17,7 +20,6 @@ export default function HeritageCard({ image, title, description, location, href
         />
       </div>
 
-      
       <div className="view-body relative p-5 flex flex-col flex-1">
         {location && (
           <span className="view-pin block mb-1.5">📍 {location}</span>
@@ -30,6 +32,6 @@ export default function HeritageCard({ image, title, description, location, href
           <span className="view-arrow">→</span>
         </span>
       </div>
-    </a>
+    </div>
   );
 }
