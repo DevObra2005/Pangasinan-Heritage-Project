@@ -42,13 +42,21 @@ export default function Navbar() {
   return (
     <nav className={`nav-bar text-heritage-cream ${scrolled ? "scrolled" : "at-top"}`}>
       <div className="flex items-center justify-between">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 group">
-          <div className="nav-logo-circle">P</div>
-          <span className="font-bold font-serif transition-colors duration-300 group-hover:text-yellow-200">
-            Pangasinan Heritage
+      {/* Logo */}
+      <Link href="/" className="flex items-center gap-3 group">
+        <div className="nav-logo-badge">
+          <span className="nav-logo-ring"></span>
+          <span className="nav-logo-inner">P</span>
+        </div>
+        <div className="flex flex-col leading-tight">
+          <span className="font-bold font-serif text-lg transition-colors duration-300 group-hover:text-yellow-200">
+            Pangasinan
           </span>
-        </Link>
+          <span className="text-[10px] tracking-[0.25em] uppercase text-heritage-cream/60">
+            Heritage
+          </span>
+        </div>
+      </Link>
 
         {/* Desktop nav links */}
         <ul className="hidden md:flex gap-10 text-sm font-medium tracking-wide">

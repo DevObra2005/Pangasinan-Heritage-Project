@@ -31,39 +31,86 @@
   border-bottom: 1px solid rgba(253, 246, 236, 0.12);
 }
 
-.nav-logo-circle {
-  width: 42px;
-  height: 42px;
+/* ===== LOGO BADGE ===== */
+.nav-logo-badge {
+  position: relative;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.nav-logo-ring {
+  position: absolute;
+  inset: 0;
   border-radius: 50%;
-  background: #fdf6ec;
-  color: #1b4332;
+  background: conic-gradient(
+    from 180deg,
+    #e0b877,
+    #fdf6ec,
+    #e0b877,
+    #1b4332,
+    #e0b877
+  );
+  padding: 2px;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  transition: transform 0.6s ease;
+}
+
+.group:hover .nav-logo-ring {
+  transform: rotate(180deg);
+}
+
+.nav-logo-inner {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #2d6a4f, #1b4332 70%);
+  color: #fdf6ec;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 17px;
   font-family: var(--font-marcellus), serif;
-  transition: transform 0.3s ease;
-}
-.group:hover .nav-logo-circle {
-  transform: scale(1.1) rotate(-5deg);
+  box-shadow: 0 0 0 0 rgba(224, 184, 119, 0);
+  transition: box-shadow 0.4s ease, transform 0.3s ease;
 }
 
+.group:hover .nav-logo-inner {
+  box-shadow: 0 0 16px 2px rgba(224, 184, 119, 0.5);
+  transform: scale(1.05);
+}
+
+/* ===== NAV LINKS ===== */
 .nav-link {
   position: relative;
   padding: 6px 0;
-  transition: color 0.3s ease;
+  letter-spacing: 0.03em;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
+
+.nav-link:hover {
+  text-shadow: 0 0 12px rgba(224, 184, 119, 0.5);
+}
+
 .nav-link-underline {
   position: absolute;
   left: 0;
   bottom: -2px;
   height: 2px;
-  background: #e0b877;
-  transition: width 0.3s ease;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #e0b877, #fdf6ec);
+  box-shadow: 0 0 8px rgba(224, 184, 119, 0.6);
+  transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Mobile menu glass panel */
+/* ===== MOBILE MENU GLASS PANEL ===== */
 .nav-mobile-panel {
   background: rgba(27, 67, 50, 0.85);
   backdrop-filter: blur(16px);
@@ -71,4 +118,5 @@
   border: 1px solid rgba(253, 246, 236, 0.12);
   border-radius: 18px;
   padding: 20px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
 }
