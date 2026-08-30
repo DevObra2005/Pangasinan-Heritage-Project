@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Button from "../components/Button";
+import NavigationItem from "../components/NavigationItem";
 import "../CSS/navbar.css";
 
 export default function Navbar() {
@@ -42,39 +43,33 @@ export default function Navbar() {
   return (
     <nav className={`nav-bar text-heritage-cream ${scrolled ? "scrolled" : "at-top"}`}>
       <div className="flex items-center justify-between">
-      {/* Logo */}
-      <Link href="/" className="flex items-center gap-3 group">
-        <div className="nav-logo-badge">
-          <span className="nav-logo-ring"></span>
-          <span className="nav-logo-inner">P</span>
-        </div>
-        <div className="flex flex-col leading-tight">
-          <span className="font-bold font-serif text-lg transition-colors duration-300 group-hover:text-yellow-200">
-            Pangasinan
-          </span>
-          <span className="text-[10px] tracking-[0.25em] uppercase text-heritage-cream/60">
-            Heritage
-          </span>
-        </div>
-      </Link>
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-3 group">
+          <div className="nav-logo-badge">
+            <span className="nav-logo-ring"></span>
+            <span className="nav-logo-inner">P</span>
+          </div>
+          <div className="flex flex-col leading-tight">
+            <span className="font-bold font-serif text-lg transition-colors duration-300 group-hover:text-yellow-200">
+              Pangasinan
+            </span>
+            <span className="text-[10px] tracking-[0.25em] uppercase text-heritage-cream/60">
+              Heritage
+            </span>
+          </div>
+        </Link>
 
         {/* Desktop nav links */}
         <ul className="hidden md:flex gap-10 text-sm font-medium tracking-wide">
-          {navLinks.map((link) => {
-            const isActive = activeSection === link.id;
-            return (
-              <li key={link.href} className="relative group">
-                <Link href={link.href} className="nav-link">
-                  {link.label}
-                </Link>
-                <span
-                  className="nav-link-underline"
-                  style={{ width: isActive ? "100%" : "0%" }}
-                ></span>
-                <span className="nav-link-underline w-0 group-hover:w-full"></span>
-              </li>
-            );
-          })}
+          {navLinks.map((link) => (
+            <NavigationItem
+              key={link.href}
+              label={link.label}
+              href={link.href}
+              isActive={activeSection === link.id}
+              variant="desktop"
+            />
+          ))}
         </ul>
 
         {/* Desktop CTA */}
@@ -98,22 +93,16 @@ export default function Navbar() {
       <div className={`md:hidden overflow-hidden transition-all duration-300 ${isOpen ? "max-h-96 mt-4" : "max-h-0"}`}>
         <div className="nav-mobile-panel">
           <ul className="flex flex-col gap-2 text-base font-medium">
-            {navLinks.map((link) => {
-              const isActive = activeSection === link.id;
-              return (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    onClick={() => setIsOpen(false)}
-                    className={`block py-3 px-4 rounded-xl transition-colors ${
-                      isActive ? "bg-heritage-cream/10 text-yellow-200" : "hover:bg-heritage-cream/5 hover:text-yellow-200"
-                    }`}
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              );
-            })}
+            {navLinks.map((link) => (
+              <NavigationItem
+                key={link.href}
+                label={link.label}
+                href={link.href}
+                isActive={activeSection === link.id}
+                variant="mobile"
+                onClick={() => setIsOpen(false)}
+              />
+            ))}
           </ul>
           <div className="mt-4">
             <Button href="#visit" onClick={() => setIsOpen(false)} className="w-full" variant="secondary">

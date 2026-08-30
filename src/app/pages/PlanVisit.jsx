@@ -3,6 +3,7 @@
 import { useState } from "react";
 import SearchBar from "../components/SearchBar";
 import Image from "next/image";
+import Button from "../components/Button";
 
 export default function PlanVisit() {
   const [query, setQuery] = useState("");
@@ -207,15 +208,15 @@ export default function PlanVisit() {
                 </div>
                 <p className="text-gray-600 text-sm leading-relaxed">{selectedSpot.blurb}</p>
                 
-                <a
-                  href={directionsUrl}
-                  target="_blank"
+                <Button 
+                  as="a" 
+                  href={directionsUrl} 
+                  target="_blank" 
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 mt-2 bg-heritage-green text-heritage-cream rounded-full py-2.5 px-6 text-sm font-semibold hover:opacity-90 transition-opacity w-fit"
                 >
                   Get Directions →
-                </a>
-              </div>
+                </Button>
+                </div>
             )}
           </div>
         </div>
