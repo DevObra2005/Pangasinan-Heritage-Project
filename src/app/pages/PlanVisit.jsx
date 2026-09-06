@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 import SearchBar from "../components/SearchBar";
+import MapEmbed from "../components/MapEmbed";
 import Image from "next/image";
+import Button from "../components/Button";
 
 export default function PlanVisit() {
   const [query, setQuery] = useState("");
@@ -77,10 +79,6 @@ export default function PlanVisit() {
   });
 
   const selectedSpot = spots.find((s) => s.name === selected);
-
-  const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(
-    selected + ", Pangasinan, Philippines"
-  )}&output=embed`;
 
   const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
     selected + ", Pangasinan, Philippines"
@@ -179,17 +177,10 @@ export default function PlanVisit() {
           {/* Map + info card */}
           <div data-aos="fade-up" className="lg:col-span-3 sticky top-24 space-y-4">
             <div className="rounded-2xl overflow-hidden shadow-xl h-[400px]">
-              <iframe
-                key={mapSrc}
-                src={mapSrc}
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="strict-origin-when-cross-origin"
+              <MapEmbed
+                query={`${selected}, Pangasinan, Philippines`}
                 title={`Map of ${selected}`}
-              ></iframe>
+              />
             </div>
 
             {selectedSpot && (
@@ -206,15 +197,15 @@ export default function PlanVisit() {
                   </span>
                 </div>
                 <p className="text-gray-600 text-sm leading-relaxed">{selectedSpot.blurb}</p>
-                
-                <a
+
+                <Button
+                  as="a"
                   href={directionsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 mt-2 bg-heritage-green text-heritage-cream rounded-full py-2.5 px-6 text-sm font-semibold hover:opacity-90 transition-opacity w-fit"
                 >
                   Get Directions →
-                </a>
+                </Button>
               </div>
             )}
           </div>

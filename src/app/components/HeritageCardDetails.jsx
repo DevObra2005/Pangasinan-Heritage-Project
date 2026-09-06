@@ -1,13 +1,9 @@
 import Image from "next/image";
+import MapEmbed from "./MapEmbed";
 import "../CSS/heritagecarddetails.css";
 
 export default function SpotDetail({ spot, onBack }) {
-  // Only show map/directions for place-type items (they have a location worth mapping)
   const isPlace = spot.type !== "culture";
-
-  const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(
-    spot.title + ", " + spot.location + ", Pangasinan"
-  )}&output=embed`;
 
   const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
     spot.title + ", " + spot.location + ", Pangasinan"
@@ -69,17 +65,10 @@ export default function SpotDetail({ spot, onBack }) {
           {isPlace && (
             <>
               <div className="sd-map">
-                <iframe
-                  key={mapSrc}
-                  src={mapSrc}
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="strict-origin-when-cross-origin"
+                <MapEmbed
+                  query={`${spot.title}, ${spot.location}, Pangasinan`}
                   title={`Map of ${spot.title}`}
-                ></iframe>
+                />
               </div>
 
               <a href={directionsUrl} target="_blank" rel="noopener noreferrer" className="sd-btn">

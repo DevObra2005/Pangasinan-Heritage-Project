@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Button from "./components/Button";
+import MapEmbed from "./components/MapEmbed";
 import "./CSS/home.css";
 import Loader from "./pages/Loader";
 import Discover from "./pages/Discover";
@@ -53,6 +54,8 @@ export default function Home() {
 
   return (
     <>
+      <Loader />
+
       {/* HERO */}
       <section
         id="home"
@@ -178,20 +181,11 @@ export default function Home() {
 
           {/* Map */}
           <div data-aos="fade-up" className="about-map h-80 lg:h-[28rem]">
-            <iframe
-              src="https://www.google.com/maps?q=Pangasinan,Philippines&output=embed"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="strict-origin-when-cross-origin"
-              title="Map of Pangasinan"
-            ></iframe>
+            <MapEmbed query="Pangasinan, Philippines" title="Map of Pangasinan" />
           </div>
         </div>
       </section>
-      <Loader />
+
       <Discover onViewMore={setSelectedSpot} />
       <Culture onViewMore={setSelectedSpot} />
       <PlanVisit />
